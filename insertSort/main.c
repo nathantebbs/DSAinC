@@ -6,7 +6,7 @@ void swap(int *a, int *b) {
     *b = temp;
 }
 
-void insertionSort(int arr[], int size) {
+void insertionSort(int arr[], size_t size) {
     if (arr == NULL || size <= 1) return;
     for (size_t i = 1; i < size; i++) {
         for (size_t j = i; j > 0 && arr[j - 1] > arr[j]; j--) {
@@ -15,11 +15,11 @@ void insertionSort(int arr[], int size) {
     }
 }
 
-void printArr(int arr[], int size) {
+void printArr(int arr[], size_t size) {
     if (arr == NULL || size <= 1) return;
 
     printf("Arr:");
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < (int) size; i++) {
         printf(" %d", arr[i]);
     }
 
@@ -29,11 +29,11 @@ void printArr(int arr[], int size) {
 int main() {
     // Default starting data
     int inputArray[] = {4, 5, 10, 9, 23, 1, 65, 8};
-    int size = sizeof(inputArray) / sizeof(int);
+    size_t size = sizeof(inputArray) / sizeof(int);
 
 
     printArr(inputArray, size);
-    printf("Input Size: %d\n", size);
+    printf("Input Size: %d\n", (int) size);
 
     insertionSort(inputArray, size);
 
