@@ -1,4 +1,6 @@
-#pragma once
+#ifndef UTILS_H
+#define UTILS_H
+
 #include <stdio.h>
 #include "graph.h"
 
@@ -9,3 +11,5 @@ void graph_print_adjlist(const Graph* g, FILE* out);
 // Prints Graphviz DOT so you can render with:
 // dot -Tpng graph.dot -o graph.png
 void graph_print_dot(const Graph* g, FILE* out);
+
+#endif // UTILS_H

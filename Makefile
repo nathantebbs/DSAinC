@@ -9,9 +9,12 @@ BIN    := main
 SRCS := $(wildcard $(SRCDIR)/*.c)
 OBJS := $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 
-.PHONY: all clean
+.PHONY: all clean graph
 
 all: $(BIN)
+
+graph: $(BIN)
+	dot -Tpng graph.dot -o graph.png
 
 $(BIN): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
