@@ -1,10 +1,13 @@
-CC     := gcc
-CFLAGS := -std=c99 -Wall -Wextra -Wpedantic -O2 -g
+CC		  := gcc
+CFLAGS	  := -std=c99 -Wall -Wextra -Wpedantic -O2 -g
+GVIZ	  := dot
+GVIZFLAGS := -Tpng
 
 INCDIR := include
 SRCDIR := src
 OBJDIR := build
 BIN    := main
+GBIN   := graph
 
 SRCS := $(wildcard $(SRCDIR)/*.c)
 OBJS := $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
@@ -14,7 +17,8 @@ OBJS := $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 all: $(BIN)
 
 graph: $(BIN)
-	dot -Tpng graph.dot -o graph.png
+	./main
+	$(GVIZ) $(GVIZFLAGS) $(GBIN).dot -o $(GBIN).png
 
 $(BIN): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
@@ -27,3 +31,4 @@ $(OBJDIR):
 
 clean:
 	rm -rf $(OBJDIR) $(BIN)
+	rm -rf $(GBIN).png $(GBIN).dot
